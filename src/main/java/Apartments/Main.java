@@ -1,11 +1,11 @@
-package Jdbc1;
+package Apartments;
 
 import java.sql.*;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-    static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/Apartaments?serverTimezone=Europe/Kiev";
+    static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/mydb?serverTimezone=Europe/Kiev";
     static final String DB_USER = "root";
     static final String DB_PASSWORD = "Qwerty!2";
 
