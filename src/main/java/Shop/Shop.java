@@ -81,13 +81,17 @@ public class Shop {
             ps.close();
         }
     }
-
-    private static void showOrders() throws SQLException {
+private static void showOrders() throws SQLException {
         PreparedStatement ps = conn.prepareStatement(
-                "SELECT Orders.id, Clients.name AS clientName, Clients.phone AS clientPhone, Orders.address, Products.name AS productName, Orders.countToBuy, Orders.date " +
+                "SELECT Orders.id, " +
+                        "Clients.name AS clientName, " +
+                        "Clients.phone AS clientPhone, " +
+                        "Orders.address, " +
+                        "Products.name AS productName, " +
+                        "Orders.countToBuy, Orders.date " +
                         "FROM Orders " +
-                        "JOIN Clients ON Orders.idClient = Clients.id " +
-                        "JOIN Products ON Orders.idProduct = Products.id"
+                        "INNER JOIN Clients ON Orders.idClient = Clients.id " +
+                        "INNER JOIN Products ON Orders.idProduct = Products.id"
         );
 
         try {
@@ -95,9 +99,9 @@ public class Shop {
 
             try {
                 ResultSetMetaData md = rs.getMetaData();
-
+                
                 for (int i = 1; i <= md.getColumnCount(); i++)
-                    System.out.print(md.getColumnName(i) + "\t\t");
+                    System.out.print(md.getColumnLabel(i) + "\t\t");
                 System.out.println();
 
                 while (rs.next()) {
